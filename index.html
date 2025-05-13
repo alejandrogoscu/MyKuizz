@@ -16,13 +16,13 @@
   <header class="header">
     <nav class="header_nav">
       <h2 class="logo">MyKUIZZ</h2>
-      <button class="btn_salir" id="btn-salir">Salir</button>
+      <button class="btn_salir hide" id="btn-salir">Salir</button>
     </nav>
   </header>
 
   <main class="main">
     <div class="contenedor_ppal" id="contenedor-ppal">
-      <div class="bienvenida hide" id="bienvenida">
+      <div class="bienvenida" id="bienvenida">
         <h1 class="titulo">Bienvenido a <strong>MyKUIZZ</strong></h1>
         <div class="botones_bienvenida">
           <button class="btn_empezar" id="btn-empezar">Empezar</button>
@@ -30,23 +30,26 @@
         </div>
       </div>
 
-      <div class="questionario" id="questionario">
-        <p class="pregunta" id="pregunta">Soy una pregunta ¿que tal mis estilos de css por ahora? si esto lo alargo no
-          se sale del contenedor.</p>
+      <div class="questionario hide" id="questionario">
+        <p class="pregunta" id="pregunta"></p>
         <div class="botones_respuesta" id="botones_respuesta">
-          <button class="btn_respuesta" id="btn-respuesta">Opción A</button>
-          <button class="btn_respuesta" id="btn-respuesta">Opción B</button>
-          <button class="btn_respuesta" id="btn-respuesta">Opción C</button>
-          <button class="btn_respuesta" id="btn-respuesta">Opción D</button>
+          <button class="btn_respuesta" id="option-a">Opción A</button>
+          <button class="btn_respuesta" id="option-b">Opción B</button>
+          <button class="btn_respuesta" id="option-c">Opción C</button>
+          <button class="btn_respuesta" id="option-d">Opción D</button>
         </div>
       </div>
     </div>
 
-    <div class="contenedor_sec" id="contenedor-sec">
+    <div class="contenedor_sec hide" id="contenedor-sec">
       <p class="contador" id="contador">1/10</p>
       <button class="btn_next" id="btn-next">Siguiente</button>
     </div>
   </main>
+
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="main.js"></script>
 </body>
 
 </html>

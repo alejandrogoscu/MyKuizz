@@ -171,10 +171,6 @@ body {
 }
 
 
-.hide {
-  display: none
-}
-
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /* CONTENEDOR SECUNDARIO */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -185,4 +181,10 @@ body {
   align-items: center;
 
   margin-top: 25px;
+}
+
+
+
+.hide {
+  display: none
 }
