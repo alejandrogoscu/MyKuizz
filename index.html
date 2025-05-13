@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/css/fonts.css">
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <title>myQUIZ app</title>
+</head>
+
+<body>
+  <header class="header">
+    <nav class="header_nav">
+      <h2 class="logo">MyKUIZZ</h2>
+      <button class="btn_salir" id="btn-salir">Salir</button>
+    </nav>
+  </header>
+
+  <main class="main">
+    <div class="contenedor_ppal" id="contenedor-ppal">
+      <div class="bienvenida hide" id="bienvenida">
+        <h1 class="titulo">Bienvenido a <strong>MyKUIZZ</strong></h1>
+        <div class="botones_bienvenida">
+          <button class="btn_empezar" id="btn-empezar">Empezar</button>
+          <button class="btn_stats" id="btn-stats">Ver estadisticas</button>
+        </div>
+      </div>
+
+      <div class="questionario" id="questionario">
+        <p class="pregunta" id="pregunta">Soy una pregunta ¿que tal mis estilos de css por ahora? si esto lo alargo no
+          se sale del contenedor.</p>
+        <div class="botones_respuesta" id="botones_respuesta">
+          <button class="btn_respuesta" id="btn-respuesta">Opción A</button>
+          <button class="btn_respuesta" id="btn-respuesta">Opción B</button>
+          <button class="btn_respuesta" id="btn-respuesta">Opción C</button>
+          <button class="btn_respuesta" id="btn-respuesta">Opción D</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="contenedor_sec" id="contenedor-sec">
+      <p class="contador" id="contador">1/10</p>
+      <button class="btn_next" id="btn-next">Siguiente</button>
+    </div>
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+
+
+/*
+* This is a variable font
+* M PLUS Code Latin
+* font-weigth: 100 to 700
+*/
+@font-face {
+  font-family: 'MPLUSCodeLatin-Vatiable';
+  src:  url(/assets/fonts/MPLUSCodeLatin-VariableFont_wdth\,wght.ttf);
+  font-weight: 100 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+
+/*
+* This is a variable font
+* Fira Code
+* font-weigth: 100 to 700
+*/
+@font-face {
+  font-family: 'FiraCode-Variable';
+  src:  url(/assets/fonts/FiraCode-VariableFont_wght.ttf);
+  font-weight: 300 700;
+  font-display: swap;
+  font-style: normal;
+}
