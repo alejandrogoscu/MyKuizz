@@ -1,4 +1,5 @@
 
+const API_URL = "https://opentdb.com/api.php?amount=10&type=multiple"
 const bienvenida = document.getElementById("bienvenida")
 const questionario = document.getElementById("questionario")
 const pregunta = document.getElementById("pregunta")
@@ -11,66 +12,85 @@ const btnNext = document.getElementById("btn-next")
 const btnStats = document.getElementById("btn-stats")
 const btnSalir = document.getElementById("btn-salir")
 
-let currentQuestionIndex;
-let score = 0
-let questionList = []
+
+let preguntaActual;
+let puntuacion = 0;
+let preguntas = [];
+let correctas = [];
+let incorrectas = [];
 
 
 // funciones <hide> class.
-function hideAll() {
+function ocultarTodo() {
   bienvenida.classList.add("hide")
   questionario.classList.add("hide")
   contenedorSec.classList.add("hide")
-  btnNext.classList.add("hide")
+  // btnNext.classList.add("hide")
   btnSalir.classList.add("hide")
 }
-function goBienvenida() {
-  hideAll()
+function irBienvenida() {
+  ocultarTodo()
   bienvenida.classList.remove("hide")
 }
-function goQuestionario() {
-  hideAll()
+function irQuestionario() {
+  ocultarTodo()
   questionario.classList.remove("hide")
   contenedorSec.classList.remove("hide")
   btnSalir.classList.remove("hide")
 }
-
-function initQuestions() {
-  axios.get("https://opentdb.com/api.php?amount=10")
-    .then(questions => {
-      questionList = questions.data.results
-      const question = questionList.map(question => question.question)
-      const correcta = questionList.map(correcta => correcta.correct_answer)
-      const respuestas = questionList.map(respuestas => respuestas.incorrect_answers)
-      showPregunta(question[currentQuestionIndex])
-      showRespuesta(correcta[currentQuestionIndex])
-      goQuestionario()
-      console.log(questionList)
-      console.log(question[currentQuestionIndex])
-      console.log(correcta[currentQuestionIndex])
-      console.log(respuestas[currentQuestionIndex])
-      console.log(typeof correcta)
-    })
-    .catch(err => console.error(err))
-}
-
-function showRespuesta(correcta) {
-  const options = document.createElement("button")
-  options.classList.add("btn_respuesta")
-  options.innerText = correcta
-  botonesRespuesta.appendChild(options)
-}
-
-function showPregunta(question) {
-  pregunta.innerText = question
+// Decofificar carácteres de la API.
+function decodeHTMLEntities(text) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(text, 'text/html');
+  return doc.documentElement.textContent;
 }
 
 
-function startQuestionario() {
-  initQuestions()
-  currentQuestionIndex = 0
+
+function mostrarPregunta(question) {
+  pregunta.innerText = decodeHTMLEntities(question)
 }
 
+function mostrarRespuestas(incorrectas, correcta) {
+  botonesRespuesta.innerHTML = ""
+  let todasPreguntas = [...incorrectas, correcta]
+  todasPreguntas.forEach(element => {
+    const options = document.createElement("button")
+    options.classList.add("btn_respuesta")
+    options.innerText = decodeHTMLEntities(element)
+    botonesRespuesta.appendChild(options)
+  });
+}
+
+async function obtenerPreguntas() {
+  try {
+    const question = await axios.get(API_URL)
+    const questionList = question.data.results
+
+    preguntas = questionList.map(question => question.question);
+    correctas = questionList.map(correcta => correcta.correct_answer)
+    incorrectas = questionList.map(respuestas => respuestas.incorrect_answers)
+
+    preguntaActual = 0
+    mostrarPregunta(preguntas[preguntaActual])
+    mostrarRespuestas(incorrectas[preguntaActual], correctas[preguntaActual])
+    irQuestionario()
+
+    console.log(preguntas)
+    console.log(correctas)
+    console.log(incorrectas)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+
+function siguientePregunta() {
+  preguntaActual++
+
+  mostrarPregunta(preguntas[preguntaActual])
+  mostrarRespuestas(incorrectas[preguntaActual], correctas[preguntaActual])
+}
 
 
 
@@ -78,5 +98,6 @@ function startQuestionario() {
 
 
 // EVENTOS.
-btnSalir.addEventListener("click", goBienvenida)
-btnEmpezar.addEventListener("click", startQuestionario)
+btnSalir.addEventListener("click", irBienvenida)
+btnEmpezar.addEventListener("click", obtenerPreguntas)
+btnNext.addEventListener("click", siguientePregunta)
