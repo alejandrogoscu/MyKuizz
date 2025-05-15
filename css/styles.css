@@ -29,12 +29,15 @@ body {
 
 .contenedor_ppal {
   width: 80%;
-  min-height: 400px;
+  max-width: 1000px;
+  min-height: 410px;
   display: flex;
   justify-content: center;
   align-items: start;
 
+  margin-top: 20px;
   padding: 20px 30px;
+  padding-bottom: 10px;
 
   background-color: var(--sec);
   box-shadow: 0px 0px 120px #0009;
@@ -57,7 +60,7 @@ body {
   justify-content: space-between;
   align-items: center;
 
-  padding: 20px 50px;
+  padding: 20px 80px;
 }
 
 .logo {
@@ -67,17 +70,27 @@ body {
 }
 
 .btn_salir {
-  padding: 5px 10px;
+  position: relative;
+  padding: 10px 2px;
+  font-size: 1em;
+  font-weight: 400;
+}
 
-  font-size: .9em;
-  font-weight: 300;
-  background-color: black;
-  border: 2px solid black;
+.btn_salir::after {
+  content: "";
+  width: 0%;
+  height: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  
 
-  &:hover {
-    background-color: white;
-    color: black;
-  }
+  background-color: var(--accent);
+  transition: width .5s;
+}
+
+.btn_salir:hover::after {
+  width: 100%;
 }
 
 
@@ -96,7 +109,7 @@ body {
 }
 
 .titulo {
-  font-size: 2em;
+  font-size: 3.5em;
   font-weight: 500;
 }
 
@@ -115,7 +128,7 @@ body {
 .btn_empezar {
   padding: 10px 20px;
 
-  font-size: 1.4em;
+  font-size: 2.4em;
   background-color: var(--accent);
   border: 2px solid var(--accent);
 
@@ -155,11 +168,22 @@ body {
   gap: 30px;
 
   margin-top: 20px;
+  text-align: center;
+  pointer-events: none;
 }
 
-.btn_respuesta {
-   padding: 10px 20px;
+.botones_respuesta > * {
+  pointer-events: auto;
+}
 
+
+
+.btn_respuesta {
+  min-width: 110px;
+  padding: 10px 20px;
+  display: block;
+
+  text-align: center;
   font-size: 1.4em;
   background-color: var(--accent);
   border: 2px solid var(--accent);
@@ -170,12 +194,41 @@ body {
   }
 }
 
+.clicado {
+  pointer-events: none;
+}
 
+.correcta {
+  background-color: green;
+  border: 2px solid green;
+}
+
+.fallida {
+  background-color: red;
+  border: 2px solid red;
+}
+
+.texto_correcta {
+  margin: 15px 0px;
+
+  font-size: 2.4em;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.texto_fallida {
+  margin: 15px 0px;
+
+  font-size: 2.1em;
+  font-weight: 500;
+  color: var(--white);
+}
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /* CONTENEDOR SECUNDARIO */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - */
 .contenedor_sec {
   width: 70%;
+  max-width: 900px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -183,7 +236,27 @@ body {
   margin-top: 25px;
 }
 
+.btn_next {
+  position: relative;
+  font-size: 1.3em;
+}
 
+.btn_next::after {
+  content: "";
+  width: 0%;
+  height: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-bottom: -8px;
+
+  background-color: var(--accent);
+  transition: width .5s;
+}
+
+.btn_next:hover::after {
+  width: 100%;
+}
 
 .hide {
   display: none
