@@ -1,13 +1,16 @@
 
 const API_URL = "https://opentdb.com/api.php?amount=10&type=multiple"
+const logo = document.getElementById("logo")
 const bienvenida = document.getElementById("bienvenida")
 const questionario = document.getElementById("questionario")
+const final = document.getElementById("final")
 const pregunta = document.getElementById("pregunta")
-const resultadoDiv = document.getElementById("resultado")
+const resultadoDiv = document.getElementById("frase-resultado")
 const contenedorSec = document.getElementById("contenedor-sec")
 const contador = document.getElementById("contador")
-
-
+const resultado = document.getElementById("resultado")
+const resPuntuacion = document.getElementById("puntuacion")
+const resNota = document.getElementById("res-nota")
 
 
 const btnEmpezar = document.getElementById("btn-empezar")
@@ -15,6 +18,8 @@ const botonesRespuesta = document.getElementById("botones-respuesta")
 const btnSiguiente = document.getElementById("btn-next")
 const btnStats = document.getElementById("btn-stats")
 const btnSalir = document.getElementById("btn-salir")
+const btnStatsRes = document.getElementById("btn-stats-res")
+const btnRejugar = document.getElementById("btn-rejugar")
 
 
 let preguntaActual;
@@ -33,9 +38,11 @@ function decodeHTMLEntities(text) {
 function ocultarTodo() {
   bienvenida.classList.add("hide")
   questionario.classList.add("hide")
+  final.classList.add("hide")
   contenedorSec.classList.add("hide")
   btnSiguiente.classList.add("hide")
   btnSalir.classList.add("hide")
+  btnStatsRes.classList.add("hide")
 }
 function irBienvenida() {
   ocultarTodo()
@@ -71,7 +78,7 @@ function mostrarRespuestas(incorrectas, correcta) {
     if (correctas.includes(options.innerText)) {
       options.dataset.correct = true
     }
-      
+
     botonesRespuesta.appendChild(options)
   });
 }
@@ -82,12 +89,14 @@ function mostrarResCorrecta() {
   resultado.innerText = "¡Correcta!"
   resultadoDiv.appendChild(resultado)
 }
+
 function mostrarResFallida() {
   const resultado = document.createElement("h2")
   resultado.classList.add("texto_fallida")
   resultado.innerText = "¡Esta vez fallaste!"
   resultadoDiv.appendChild(resultado)
 }
+
 function validarRespuesta(element) {
   if (element.dataset.correct) {
     mostrarResCorrecta()
@@ -105,6 +114,22 @@ function validarRespuesta(element) {
     })
   }
 }
+
+function mostrarPuntuacion() {
+  resPuntuacion.innerText = `${puntuacion}`
+  if (puntuacion < 29) {
+    resNota.innerText = "¡Revancha, vamos!"
+  } else if (puntuacion < 49) {
+    resNota.innerText = "¡Casi lo tienes!"
+  } else if (puntuacion < 69) {
+    resNota.innerText = "¡Bien jugado!"
+  } else if (puntuacion < 89) {
+    resNota.innerText = "¡Muy crack!"
+  } else {
+    resNota.innerText = "¡Nivel Leyenda!"
+  }
+}
+
 
 
 async function obtenerPreguntas() {
@@ -147,14 +172,31 @@ function siguientePregunta() {
     mostrarPregunta(preguntas[preguntaActual])
     mostrarRespuestas(incorrectas[preguntaActual], correctas[preguntaActual])
   } else {
-    console.log("se acabaron las preguntas")
+    ocultarTodo()
+    final.classList.remove("hide")
+    btnStatsRes.classList.remove("hide")
+    btnSalir.classList.remove("hide")
+    mostrarPuntuacion()
   }
 }
 
+async function resetearJuego() {
+  try {
+    await obtenerPreguntas()
+    puntuacion = 0
+    preguntaActual = 0
+    contador.innerText = `1/10`
+  } catch (error) {
+    console.error(error)
+  }
+
+}
 
 
 // EVENTOS.
+logo.addEventListener("click", irBienvenida)
 btnSalir.addEventListener("click", irBienvenida)
 btnEmpezar.addEventListener("click", obtenerPreguntas)
 botonesRespuesta.addEventListener("click", responder)
 btnSiguiente.addEventListener("click", siguientePregunta)
+btnRejugar.addEventListener("click", resetearJuego)

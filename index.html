@@ -15,8 +15,11 @@
 <body>
   <header class="header">
     <nav class="header_nav">
-      <h2 class="logo">MyKUIZZ</h2>
-      <button class="btn_salir hide" id="btn-salir">Salir</button>
+      <button class="logo" id="logo">MyKUIZZ</button>
+      <div class="btns_nav">
+        <button class="btn_stats_res hide" id="btn-stats-res">Estadisticas</button>
+        <button class="btn_salir hide" id="btn-salir">Salir</button>
+      </div>
     </nav>
   </header>
 
@@ -33,8 +36,18 @@
       <div class="questionario hide" id="questionario">
         <p class="pregunta" id="pregunta"></p>
         <div class="botones_respuesta" id="botones-respuesta"></div>
-        <div id="resultado"></div>
+        <div id="frase-resultado"></div>
       </div>
+
+      <div class="final hide" id="final">
+        <h2 class="res_title">Tu puntuacion:</h2>
+        <p class="res_text"><span class="puntuacion" id="puntuacion">100</span> de 100</p>
+        <div class="res_final">
+          <p class="res_nota" id="res-nota"></p>
+          <button class="btn_rejugar" id="btn-rejugar">Volver a Jugar</button>
+        </div>
+      </div>
+
     </div>
 
     <div class="contenedor_sec hide" id="contenedor-sec">

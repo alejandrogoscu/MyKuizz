@@ -69,14 +69,21 @@ body {
   color: var(--accent)
 }
 
-.btn_salir {
+.btns_nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.btn_salir, .btn_stats_res {
   position: relative;
   padding: 10px 2px;
   font-size: 1em;
   font-weight: 400;
 }
 
-.btn_salir::after {
+.btn_salir::after, .btn_stats_res::after {
   content: "";
   width: 0%;
   height: 3px;
@@ -89,7 +96,7 @@ body {
   transition: width .5s;
 }
 
-.btn_salir:hover::after {
+.btn_salir:hover::after, .btn_stats_res:hover::after{
   width: 100%;
 }
 
@@ -138,6 +145,28 @@ body {
   }
 }
 
+.btn_stats {
+  position: relative;
+  font-size: 1.6em;
+}
+
+.btn_stats::after {
+  content: "";
+  width: 0%;
+  height: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-bottom: -8px;
+  
+
+  background-color: var(--accent);
+  transition: width .5s;
+}
+
+.btn_stats:hover::after {
+  width: 100%;
+}
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - */
 /* QUESTIONARIO */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -175,8 +204,6 @@ body {
 .botones_respuesta > * {
   pointer-events: auto;
 }
-
-
 
 .btn_respuesta {
   min-width: 110px;
@@ -258,6 +285,66 @@ body {
   width: 100%;
 }
 
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* RESULTADO FINAL */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - */
+.final{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  margin-top: 40px;
+}
+
+.res_title {
+  font-size: 1.3em;
+  font-weight: 400;
+  color: var(--white);
+}
+
+
+.res_text {
+  font-size: 1.8em;
+  font-weight: 400;
+  color: var(--white);
+}
+
+.puntuacion {
+  font-size: 2.2em;
+  color: var(--accent);
+}
+
+.res_final {
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 35px;
+  margin-top: 40px;
+}
+
+.res_nota {
+  font-size: 2em;
+  font-weight: 500;
+  color: var(--white);
+}
+
+.btn_rejugar {
+  padding: 10px 20px;
+
+  font-size: 1.4em;
+  background-color: var(--accent);
+  border: 2px solid var(--accent);
+
+  &:hover {
+    background-color: white;
+    color: var(--accent);
+  }
+}
+
 .hide {
-  display: none
+  display: none 
 }
