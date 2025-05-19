@@ -42,7 +42,6 @@ function ocultarTodo() {
   contenedorSec.classList.add("hide")
   btnSiguiente.classList.add("hide")
   btnSalir.classList.add("hide")
-  btnStatsRes.classList.add("hide")
 }
 function irBienvenida() {
   ocultarTodo()
@@ -131,7 +130,6 @@ function mostrarPuntuacion() {
 }
 
 
-
 async function obtenerPreguntas() {
   try {
     const question = await axios.get(API_URL)
@@ -154,7 +152,6 @@ async function obtenerPreguntas() {
 }
 
 
-
 function responder(e) {
   document.querySelectorAll(".btn_respuesta").forEach(option => option.classList.add("clicado"))
   btnSiguiente.classList.remove("hide")
@@ -174,7 +171,6 @@ function siguientePregunta() {
   } else {
     ocultarTodo()
     final.classList.remove("hide")
-    btnStatsRes.classList.remove("hide")
     btnSalir.classList.remove("hide")
     mostrarPuntuacion()
   }
@@ -200,3 +196,4 @@ btnEmpezar.addEventListener("click", obtenerPreguntas)
 botonesRespuesta.addEventListener("click", responder)
 btnSiguiente.addEventListener("click", siguientePregunta)
 btnRejugar.addEventListener("click", resetearJuego)
+
