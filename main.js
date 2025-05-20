@@ -16,10 +16,13 @@ const resNota = document.getElementById("res-nota")
 const btnEmpezar = document.getElementById("btn-empezar")
 const botonesRespuesta = document.getElementById("botones-respuesta")
 const btnSiguiente = document.getElementById("btn-next")
-const btnStats = document.getElementById("btn-stats")
 const btnSalir = document.getElementById("btn-salir")
-const btnStatsRes = document.getElementById("btn-stats-res")
 const btnRejugar = document.getElementById("btn-rejugar")
+
+// GRAFICA - ESTADISTICAS
+const grafica = document.getElementById("grafica")
+const btnStats = document.getElementById("btn-stats")
+const btnStatsRes = document.getElementById("btn-stats-res")
 
 
 let preguntaActual;
@@ -27,6 +30,7 @@ let puntuacion = 0;
 let preguntas = [];
 let correctas = [];
 let incorrectas = [];
+
 
 // Decofificar carácteres de la API.
 function decodeHTMLEntities(text) {
@@ -77,7 +81,6 @@ function mostrarRespuestas(incorrectas, correcta) {
     if (correctas.includes(options.innerText)) {
       options.dataset.correct = true
     }
-
     botonesRespuesta.appendChild(options)
   });
 }

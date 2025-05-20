@@ -224,16 +224,19 @@ body {
 
 .clicado {
   pointer-events: none;
+  opacity: .7;
 }
 
 .correcta {
   background-color: green;
   border: 2px solid green;
+  opacity: 1;
 }
 
 .fallida {
   background-color: red;
   border: 2px solid red;
+  opacity: 1;
 }
 
 .texto_correcta {
