@@ -35,7 +35,7 @@ function decodeHTMLEntities(text) {
   return doc.documentElement.textContent;
 }
 // funciones para ocultar y borrar.
-function ocultarTodo() {
+const ocultarTodo = () => {
   bienvenida.classList.add("hide")
   questionario.classList.add("hide")
   final.classList.add("hide")
@@ -43,18 +43,18 @@ function ocultarTodo() {
   btnSiguiente.classList.add("hide")
   btnSalir.classList.add("hide")
 }
-function irBienvenida() {
+const irBienvenida = () => {
   ocultarTodo()
   bienvenida.classList.remove("hide")
   contador.innerText = "1/10"
 }
-function irQuestionario() {
+const irQuestionario = () => {
   ocultarTodo()
   questionario.classList.remove("hide")
   contenedorSec.classList.remove("hide")
   btnSalir.classList.remove("hide")
 }
-function borrarDivs() {
+const borrarDivs = () => {
   botonesRespuesta.innerHTML = ""
   resultadoDiv.innerHTML = ""
 }
@@ -62,11 +62,11 @@ function borrarDivs() {
 
 
 // Lógica del Quiz.
-function mostrarPregunta(question) {
+const mostrarPregunta = (question) => {
   pregunta.innerText = decodeHTMLEntities(question)
 }
 
-function mostrarRespuestas(incorrectas, correcta) {
+const mostrarRespuestas = (incorrectas, correcta) => {
   borrarDivs()
   let todasPreguntas = [...incorrectas, correcta]
   todasPreguntas.sort(() => Math.random() - 0.5)
@@ -81,21 +81,21 @@ function mostrarRespuestas(incorrectas, correcta) {
   });
 }
 
-function mostrarResCorrecta() {
+const mostrarResCorrecta = () => {
   const resultado = document.createElement("h2")
   resultado.classList.add("texto_correcta")
   resultado.innerText = "¡Correcta!"
   resultadoDiv.appendChild(resultado)
 }
 
-function mostrarResFallida() {
+const mostrarResFallida = () => {
   const resultado = document.createElement("h2")
   resultado.classList.add("texto_fallida")
   resultado.innerText = "¡Esta vez fallaste!"
   resultadoDiv.appendChild(resultado)
 }
 
-function validarRespuesta(element) {
+const validarRespuesta = (element) => {
   if (element.dataset.correct) {
     mostrarResCorrecta()
     element.classList.add("correcta")
@@ -113,7 +113,7 @@ function validarRespuesta(element) {
   }
 }
 
-function mostrarPuntuacion() {
+const mostrarPuntuacion = () => {
   resPuntuacion.innerText = `${puntuacion}`
   if (puntuacion < 29) {
     resNota.innerText = "¡Revancha, vamos!"
@@ -151,7 +151,7 @@ async function obtenerPreguntas() {
 }
 
 
-function responder(e) {
+const responder = (e) => {
   document.querySelectorAll(".btn_respuesta").forEach(option => option.classList.add("clicado"))
   btnSiguiente.classList.remove("hide")
   const respuesta = e.target
@@ -159,7 +159,7 @@ function responder(e) {
 }
 
 
-function siguientePregunta() {
+const siguientePregunta = () => {
   if (preguntas.length > preguntaActual + 1) {
     preguntaActual++
     const numContador = preguntaActual + 1
