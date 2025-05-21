@@ -19,10 +19,6 @@ const btnSiguiente = document.getElementById("btn-next")
 const btnSalir = document.getElementById("btn-salir")
 const btnRejugar = document.getElementById("btn-rejugar")
 
-// GRAFICA - ESTADISTICAS
-const grafica = document.getElementById("grafica")
-const btnStats = document.getElementById("btn-stats")
-const btnStatsRes = document.getElementById("btn-stats-res")
 
 
 let preguntaActual;
